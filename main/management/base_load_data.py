@@ -19,7 +19,7 @@ class DummyData:
         member_records = self.members_num
         activity_records = member_records*5
         start = datetime.datetime.now(tz=datetime.timezone.utc)
-        end = start + relativedelta(months=4)
+        end = start + relativedelta(months=(member_records*2)//30 +1)
         dates = []
         members = []
         while member_records:
@@ -29,7 +29,7 @@ class DummyData:
         logger.info("%s Members Are Created", len(members))
 
         while len(dates) !=activity_records:
-            ran = random.randint(1,59)
+            ran = random.randint(1,activity_records)
             date = (start + relativedelta(days=ran), end - relativedelta(days=ran))
             if date not in dates:
                 activity = Activity_Period.objects.create(start_time=date[0], end_time=date[-1], member=random.choice(members))
