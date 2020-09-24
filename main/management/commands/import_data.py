@@ -26,6 +26,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         logger.info("Dummy Data Insertion Start")
-        dummy = DummyData(options['members'])
+        dummy = DummyData(options['members_count'])
         self.run(dummy)
         logger.info("Dummy Data Insertion Start")
